@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Receitas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.0.7/imask.min.js"></script> <!-- Importação da biblioteca InputMask -->
+</head>
+<body>
+
+<style>
+    body {
+        background-image: url('{{ url_for('static', filename='Website Trivo.png') }}');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: #FFF;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    .logo {
+        width: 100px; /* ajuste conforme necessário */
+        height: 100px; /* ajuste conforme necessário */
+    }
+
+    h1 {
+        margin-top: 20px;
+        font-size: 24px;
+        color: #7FFF00; /* Alteração da cor para verde */
+    }
+
+    form {
+        display: inline-block;
+        border: 2px solid #7FFF00;
+        border-radius: 10px;
+        padding: 20px;
+        background-color: 'black';
+    }
+
+    .input-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    input {
+        margin-top: 10px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #FFF;
+        border-radius: 20px;
+    }
+
+    .small-input {
+        display: inline-block;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #FFF;
+        border-radius: 20px;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    button {
+        margin: 0 10px; /* Espaço entre os botões */
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #5269FF;
+        color: #FFF;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #FF7F00;
+    }
+
+</style>
+<div class="container">
+    <form action="caminho/para/o/destino" method="POST">
+        <img src="static/logo trivo.png" alt="Logo da sua empresa" class="logo">
+        <h1>Adicionar receitas</h1>
+        <div class="input-container">
+            <label for="input-grande">Insira o nome da receita:</label>
+            <input type="text" id="input-grande" name="input-grande" placeholder="Nome da receita">
+        </div>
+        <br>
+        <div>
+            <input type="text" name="input-pequeno1" class="small-input" placeholder="DD/MM/YYYY">
+            <input type="text" name="input-pequeno2" class="small-input" placeholder="R$0,00">
+        </div>
+        <br>
+        <div class="button-container">
+            <button type="submit">Adicionar</button>
+            <button type="button" onclick="window.history.back()">Voltar</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    // Máscara para data (DD/MM/YYYY)
+    var dateMask = IMask(document.getElementById('input-pequeno1'), {
+        mask: '00/00/0000'
+    });
+
+    // Máscara para dinheiro (R$0,00)
+    var moneyMask = IMask(document.getElementById('input-pequeno2'), {
+        mask: 'R$ num',
+        blocks: {
+            num: {
+                mask: Number,
+                thousandsSeparator: '.',
+                radix: ','
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
